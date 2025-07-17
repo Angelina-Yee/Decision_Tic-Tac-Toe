@@ -1,5 +1,21 @@
+/* Screens */
+.screen{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active{
+    display: flex;
+}
+
 /* Intro */
-.intro_bg{
+#screen_intro .intro_bg{
     position:absolute;
     top:0;
     left:0;
