@@ -23,7 +23,7 @@ let boardState, currentPlayer;
 
 function show(screenName){
     Object.values(screens).forEach(s=>s.classList.remove('active'));
-    screens[name].classList.add('active');
+    screens[screenName].classList.add('active');
 }
 
 btnP1.onclick = () => show('input1');
@@ -49,46 +49,54 @@ function initBoard(){
     for(let i=0; i<9; i++){
         const cell = document.createElement('div');
         cell.className = 'cell';
-        cell.dataset.idc = i;
+        cell.dataset.idx = i;
         cell.onclick = handleCell;
         boarded.appendChild(cell);
     }
 }
 
 const winCombos=[
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0,3,6], [1,4,7], [2,4,8], [0,4,8], [2,4,6]
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]
 ];
 
-function handelCell(e){
+function handleCell(e){
     const i = e.currentTarget.dataset.idx;
     if(boardState[i] || screens.result.classList.contains('active')) return;
     boardState[i] = currentPlayer;
     e.currentTarget.textContent = currentPlayer === 'X' ? 'O' : 'X';
+    if(checkWin()){
+        endGame(currentPlayer);
+    } else if(boardState.every(v=>v)){
+        endGame(null);
+    } else{
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
 }
 
 function checkWin(){
     return winCombos.some(combo => combo.every(i=>boardState[i] === currentPlayer));
+    
 }
 
 function endGame(winner){
     show('result');
-
-    screens.result.querySelector('.result').classList.remove('winX', 'winO', 'draw');
+    const modal = screens.result.querySelector('.result');
+    modal.classList.remove('winX', 'winO', 'draw');
 
     if(winner==='X'){
         resultTitle.textContent ='WINNER!';
         resultMessage.textContent = choiceP1;
-        screens.result.querySelector('.result').classList.add('winX');
+        modal.classList.add('winX');
     }
     else if(winner === 'O'){
-        result.Title.textContent = 'WINNER!';
+        resultTitle.textContent = 'WINNER!';
         resultMessage.textContent = choiceP2;
-        screens.result.querySelector('.result').classList.add('winO');
+        modal.classList.add('winO');
     }
     else{
-        result.Title.textContent = 'DRAW!';
+        resultTitle.textContent = 'DRAW!';
         resultMessage.textContent = "Hmm... Seems like you are too good at this game. Try Again!";
-        screens.result.querySelector('.result').classList.add('draw');
+        modal.classList.add('draw');
     }
 }
 
@@ -98,10 +106,8 @@ btnRestart.onclick = () => {
     show('landing');
 };
 
-screens.intro = document.getElementById('screen_intro');
 window.addEventListener('DOMContentLoaded', () => {
     show('intro');
-    setTimeout(() => {
-        show('landing');
-    }, 5000);
+    setTimeout(() =>
+        show('landing'), 3000);
 });
