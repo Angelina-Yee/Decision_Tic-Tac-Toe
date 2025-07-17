@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Decision-Maker Tic-Tac-Toe</title>
+        <!--fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <!--stylesheet-->
+        <link rel="stylesheet" href="css/styles.css"/>
+    </head>
+    <body>
+        <div id="screen_intro" class="screen active">
+            <div class="intro">
+                <h2>Decision-Making</h2>
+                <h1>Tic-Tac-Toe</h1>
+            </div>
+        </div>
+        <div id="screen_landing" class="screen"> 
+            <div class="landing">
+                <h1>How to Play:</h1>
+                <p>Having trouble making decisions together?<br/>Play this simple game of tic-tac-toe!</p>
+                <h4>Rules&Instructions:</h4>
+                <ul>
+                    <li>Each player writes their choice without the other knowing the contents.</li>
+                    <li>The choice of whoever wins will be displayed and the decision is made! As simple as that!</li>
+                </ul>
+                <button id="btnPlayerOne">Player One</button>
+                <button id="btnPlayerTwo">Player Two</button>
+            </div>
+        </div>
+        <!--Player inputs-->
+        <div id="screen_input1" class="screen">
+            <div class="inputp1">
+                <h2>Player One<br/>Please enter your message!</h2>
+                <textarea id="inputone" placeholder="Enter here..."></textarea>
+                <button id="submitp1">Submit</button>
+            </div>
+        </div>
+        <div id="screen_input2" class="screen">
+            <div class="inputp2">
+                <h2>Player Two<br/>Please enter your message!</h2>
+                <textarea id="inputtwo" placeholder="Enter here..."></textarea>
+                <button id="submitp2">Submit</button>
+            </div>
+        </div>
+        <!--Game Board-->
+        <div id="screen_game" class="screen">
+            <div id="board" class="board"></div>
+        </div>
+        <!--Result-->
+        <div id="screen_result" class="screen">
+            <div class="result">
+                <h1 id="resultTitle"></h1>
+                <div id="resultMessage"></div>
+                <button id="btnRestart">Play again</button>
+            </div>
+        </div>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>
