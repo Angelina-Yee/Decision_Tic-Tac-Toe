@@ -95,7 +95,10 @@ function endGame(winner){
     show('result');
     const modal = screens.result.querySelector('.result');
     modal.classList.remove('winX', 'winO', 'draw');
-
+    resultMessage.style.display='';
+    resultMessage.style.border = '';
+    resultMessage.style.background = '';
+    resultPlayer.style.display = '';
     if(winner==='X'){
         resultTitle.textContent ='WINNER!';
         resultPlayer.textContent = 'Player One';
@@ -110,15 +113,24 @@ function endGame(winner){
     }
     else{
         resultTitle.textContent = 'DRAW!';
+        resultPlayer.style.display = 'none';
+        resultMessage.style.border = 'none';
+        resultMessage.style.background = 'none';
         resultMessage.textContent = "Hmm... Seems like you are too good at this game. Try Again!";
         modal.classList.add('draw');
     }
 }
 
 btnRestart.onclick = () => {
-    txtP1.value = '';
-    txtP2.value = '';
-    show('landing');
+    const modal = screens.result.querySelector('.result');
+    if(modal.classList.contains('draw')){
+        initBoard();
+        show('game');
+    } else{
+        txtP1.value = '';
+        txtP2.value = '';
+        show('landing');
+    }
 };
 
 /*Splash Page*/
