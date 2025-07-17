@@ -8,7 +8,6 @@ const screens = {
 };
 
 const btnP1 = document.getElementById('btnPlayerOne');
-const btnP2 = document.getElementById('btnPlayerTwo');
 const submitP1 = document.getElementById('submitp1');
 const submitP2 = document.getElementById('submitp2');
 const txtP1 = document.getElementById('inputone');
@@ -27,7 +26,6 @@ function show(screenName){
 }
 
 btnP1.onclick = () => show('input1');
-btnP2.onclick = () => show('input2');
 
 submitP1.onclick = () => {
     if(!txtP1.value.trim()) return alert('You must enter something, Player One!');
