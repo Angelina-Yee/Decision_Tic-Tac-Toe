@@ -14,6 +14,7 @@ const txtP1 = document.getElementById('inputone');
 const txtP2 = document.getElementById('inputtwo');
 const boarded = document.getElementById('board');
 const resultTitle = document.getElementById('resultTitle');
+const resultPlayer = document.getElementById('resultPlayer');
 const resultMessage = document.getElementById('resultMessage');
 const btnRestart = document.getElementById('btnRestart');
 
@@ -24,6 +25,8 @@ function show(screenName){
     Object.values(screens).forEach(s=>s.classList.remove('active'));
     screens[screenName].classList.add('active');
 }
+
+/*Input*/
 
 btnP1.onclick = () => show('input1');
 
@@ -40,8 +43,10 @@ submitP2.onclick = () =>{
     show('game');
 };
 
+/*Game*/
+
 function initBoard(){
-    boardState = Array (9).fill(null);
+    boardState = Array(9).fill(null);
     currentPlayer = 'X';
     boarded.innerHTML = '';
     for(let i=0; i<9; i++){
@@ -61,10 +66,20 @@ function handleCell(e){
     const i = e.currentTarget.dataset.idx;
     if(boardState[i] || screens.result.classList.contains('active')) return;
     boardState[i] = currentPlayer;
-    e.currentTarget.textContent = currentPlayer === 'X' ? 'O' : 'X';
+    if(currentPlayer === 'X'){
+        const img = document.createElement('img');
+        img.src= '../assets/star.svg';
+        img.alt = '*';
+        e.currentTarget.appendChild(img);
+    }else{
+        const img = document.createElement('img');
+        img.src= '../assets/circle.svg';
+        img.alt = 'O';
+        e.currentTarget.appendChild(img);
+    }
     if(checkWin()){
         endGame(currentPlayer);
-    } else if(boardState.every(v=>v)){
+    } else if(boardState.every(v=>v !== null)){
         endGame(null);
     } else{
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
@@ -83,11 +98,13 @@ function endGame(winner){
 
     if(winner==='X'){
         resultTitle.textContent ='WINNER!';
+        resultPlayer.textContent = 'Player One';
         resultMessage.textContent = choiceP1;
         modal.classList.add('winX');
     }
     else if(winner === 'O'){
         resultTitle.textContent = 'WINNER!';
+        resultPlayer.textContent = 'Player Two';
         resultMessage.textContent = choiceP2;
         modal.classList.add('winO');
     }
@@ -103,6 +120,8 @@ btnRestart.onclick = () => {
     txtP2.value = '';
     show('landing');
 };
+
+/*Splash Page*/
 
 window.addEventListener('DOMContentLoaded', () => {
     show('intro');

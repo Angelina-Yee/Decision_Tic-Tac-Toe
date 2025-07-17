@@ -35,16 +35,24 @@
         <!--Player inputs-->
         <div id="screen_input1" class="screen">
             <div class="inputp1">
+                <button class="reduce_btn">-</button>
+                <button class="close_btn">X</button>
                 <h2>Player One<br/>Please enter your message!</h2>
-                <textarea id="inputone" placeholder="Enter here..."></textarea>
-                <button id="submitp1">Submit</button>
+                <div class="txtbtn">
+                    <textarea id="inputone" placeholder="Enter here..."></textarea>
+                    <button id="submitp1">Submit</button>
+                </div>
             </div>
         </div>
         <div id="screen_input2" class="screen">
             <div class="inputp2">
+                <button class="reduce_btn">-</button>
+                <button class="close_btn">X</button>
                 <h2>Player Two<br/>Please enter your message!</h2>
-                <textarea id="inputtwo" placeholder="Enter here..."></textarea>
-                <button id="submitp2">Submit</button>
+                <div class="txtbtn">
+                    <textarea id="inputtwo" placeholder="Enter here..."></textarea>
+                    <button id="submitp2">Submit</button>
+                </div>
             </div>
         </div>
         <!--Game Board-->
@@ -54,8 +62,11 @@
         <!--Result-->
         <div id="screen_result" class="screen">
             <div class="result">
+                <button class="reduce_btn">-</button>
+                <button class="close_btn">X</button>
                 <h1 id="resultTitle"></h1>
-                <div id="resultMessage"></div>
+                <h2 id="resultPlayer"></h2>
+                <div id="resultMessage" class="message"></div>
                 <button id="btnRestart">Play again</button>
             </div>
         </div>
